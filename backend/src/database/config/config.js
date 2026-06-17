@@ -2,28 +2,27 @@ require('dotenv').config();
 
 module.exports = {
   "development": {
-    use_env_variable: 'DATABASE_URL',
-    dialect: 'postgres',
-    dialectOptions: {
-      ssl: {
-        rejectUnauthorized: false
-      }
-    }
+    "username": "root",
+    "password": null,
+    "database": "duitflow_db_dev",
+    "host": "127.0.0.1",
+    "dialect": "sqlite",
+    "storage": "./src/database/duitflow_db_dev.sqlite"
   },
   "test": {
     "username": "root",
     "password": null,
-    "database": "database_test",
+    "database": "duitflow_db_tests",
     "host": "127.0.0.1",
     "dialect": "sqlite",
-    "storage": "./src/database/database_test.sqlite"
+    "storage": "./src/database/duitflow_db_tests.sqlite"
   },
   "production": {
     "username": "root",
     "password": null,
-    "database": "database_production",
+    "database": "duitflow_db_prod",
     "host": "127.0.0.1",
     "dialect": "sqlite",
-    "storage": "./src/database/database_production.sqlite"
+    "storage": "./src/database/duitflow_db_prod.sqlite"
   }
 }
