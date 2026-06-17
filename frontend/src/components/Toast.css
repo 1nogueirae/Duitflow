@@ -8,17 +8,17 @@
 .toast-box {
 	min-width: 260px;
 	max-width: 360px;
-	border: 1px solid #2a2a2a;
-	background: #141414;
-	color: #ffffff;
+	border: 1px solid var(--border-soft);
+	background: var(--bg);
+	color: var(--text-h);
 }
 
 .toast-success {
-	border-left: 4px solid #f5c518;
+	border-left: 4px solid var(--accent);
 }
 
 .toast-error {
-	border-left: 4px solid #e05252;
+	border-left: 4px solid var(--danger);
 }
 
 .toast-content {
@@ -37,12 +37,12 @@
 .toast-close {
 	border: 0;
 	background: transparent;
-	color: #a0a0a0;
+	color: var(--text);
 	font-size: 1.15rem;
 	line-height: 1;
 	cursor: pointer;
 }
 
 .toast-close:hover {
-	color: #ffffff;
+	color: var(--text-h);
 }

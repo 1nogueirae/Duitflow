@@ -8,10 +8,10 @@
 }
 
 .task-filter-btn {
-	border: 1px solid #2a2a2a;
+	border: 1px solid var(--border-soft);
 	border-radius: 999px;
-	background: #141414;
-	color: #a0a0a0;
+	background: var(--bg);
+	color: var(--text);
 	padding: 0.45rem 0.85rem;
 	font-size: 0.78rem;
 	font-family: var(--mono);
@@ -25,63 +25,63 @@
 .task-filter-btn-done,
 .task-filter-btn-pending,
 .task-filter-btn-in-progress {
-	border-color: #2a2a2a;
-	background: #141414;
-	color: #a0a0a0;
+	border-color: var(--border-soft);
+	background: var(--bg);
+	color: var(--text);
 }
 
 .task-filter-btn-done-active {
-	border-color: #23d613;
+	border-color: var(--success);
 	background: rgba(35, 214, 19, 0.26);
-	color: #87f07b;
+	color: var(--neutral-4);
 }
 
 .task-filter-btn-pending-active {
-	border-color: #f5c518;
-	background: rgba(245, 197, 24, 0.24);
-	color: #ffe388;
+	border-color: var(--accent);
+	background: var(--accent-soft-2);
+	color: var(--neutral-6);
 }
 
 .task-filter-btn-in-progress-active {
-	border-color: #2f80ed;
-	background: rgba(47, 128, 237, 0.24);
-	color: #9dc4fb;
+	border-color: var(--info);
+	background: var(--info-soft);
+	color: var(--neutral-5);
 }
 
 .task-filter-btn-pending:hover {
-	border-color: #f5c518;
-	background: rgba(245, 197, 24, 0.12);
-	color: #f5c518;
+	border-color: var(--accent);
+	background: var(--accent-soft-3);
+	color: var(--accent);
 }
 
 .task-filter-btn-in-progress:hover {
-	border-color: #2f80ed;
-	background: rgba(47, 128, 237, 0.14);
-	color: #2f80ed;
+	border-color: var(--info);
+	background: var(--info-soft-2);
+	color: var(--info);
 }
 
 .task-filter-btn-done:hover {
-	background: rgba(35, 214, 19, 0.16);
+	background: var(--success-soft-2);
 	border-color: rgba(35, 214, 19, 0.55);
-	color: #23d613;
+	color: var(--success);
 }
 
 .task-filter-btn-done-active:hover {
-	background: #23d613;
-	border-color: #23d613;
-	color: #0a0a0a;
+	background: var(--success);
+	border-color: var(--success);
+	color: var(--text-strong);
 }
 
 .task-filter-btn-pending-active:hover {
-	background: #f5c518;
-	border-color: #f5c518;
-	color: #0a0a0a;
+	background: var(--accent);
+	border-color: var(--accent);
+	color: var(--text-strong);
 }
 
 .task-filter-btn-in-progress-active:hover {
-	background: #2f80ed;
-	border-color: #2f80ed;
-	color: #0a0a0a;
+	background: var(--info);
+	border-color: var(--info);
+	color: var(--text-strong);
 }
 
 @media (max-width: 640px) {

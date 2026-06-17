@@ -1,11 +1,32 @@
 :root {
   --text: #a0a0a0;
   --text-h: #ffffff;
+  --text-strong: #0a0a0a;
   --bg: #141414;
+  --bg-elevated: #111111;
   --surface: #1c1c1c;
+  --surface-2: #1f1f1f;
   --border: #3a3a3a;
+  --border-strong: #4a4a4a;
+  --border-soft: #2a2a2a;
+  --border-divider: #2e2e2e;
   --accent: #f5c518;
-  --accent-dim: rgba(245, 197, 24, 0.15);
+  --accent-soft: rgba(245, 197, 24, 0.15);
+  --accent-soft-2: rgba(245, 197, 24, 0.24);
+  --accent-soft-3: rgba(245, 197, 24, 0.12);
+  --info: #2f80ed;
+  --info-soft: rgba(47, 128, 237, 0.24);
+  --info-soft-2: rgba(47, 128, 237, 0.14);
+  --success: #23d613;
+  --success-soft: rgba(35, 214, 19, 0.24);
+  --success-soft-2: rgba(35, 214, 19, 0.16);
+  --danger: #e05252;
+  --danger-soft: rgba(224, 82, 82, 0.2);
+  --neutral-2: #666666;
+  --neutral-3: #555555;
+  --neutral-4: #87f07b;
+  --neutral-5: #9dc4fb;
+  --neutral-6: #ffe388;
   --shadow: rgba(0, 0, 0, 0.6) 0 10px 30px -5px;
 
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
@@ -29,7 +50,7 @@
 html,
 body {
   margin: 0;
-  background-color: #141414;
+  background-color: var(--bg);
 }
 
 #root {
