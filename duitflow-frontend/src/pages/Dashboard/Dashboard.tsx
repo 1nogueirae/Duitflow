@@ -146,6 +146,7 @@ function Dashboard() {
                                 description: editingTask.description,
                                 status: editingTask.status
                             } : undefined}
+                            isEditing={editingTaskId ? true : false}
                             onSubmit={(data) => {
                                 editingTaskId ? handleEditTask(editingTaskId, data) : handleCreateTask(data)
                             }}

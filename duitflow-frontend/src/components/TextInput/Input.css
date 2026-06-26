@@ -7,6 +7,18 @@
     width: 100%;
 }
 
+.text-input.warning input,
+.text-input.warning textarea {
+    border-color: var(--color-warning);
+    box-shadow: 0 0 0 var(--border-width-md) var(--color-warning-light);
+}
+
+.text-input-warning {
+    font-size: var(--font-size-xs);
+    color: var(--color-warning);
+    margin-left: var(--spacing-xs);
+}
+
 /* Label do Input */
 .text-input label {
     font-size: var(--font-size-sm);

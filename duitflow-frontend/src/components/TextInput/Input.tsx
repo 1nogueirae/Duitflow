@@ -1,4 +1,4 @@
-import './Input.css'
+import './Input.css';
 
 interface InputProps {
     id?: string;
@@ -7,36 +7,40 @@ interface InputProps {
     placeholder?: string;
     onChange?: (value: string) => void;
     variant?: 'text' | 'password' | 'email' | 'number' | 'textarea';
+    warningMessage?: string;
 }
+
 export const Input = ({
     id,
-    label = 'Text Input',
+    label = 'Label',
     value,
     placeholder,
     onChange,
     variant = 'text',
+    warningMessage,
 }: InputProps) => {
+    const hasWarning = !!warningMessage; // 👈 Deriva do warningMessage
+    const textInputClass = `text-input ${hasWarning ? 'warning' : ''}`;
+
     const commonProps = {
         id,
-        placeholder,
+        placeholder: placeholder || 'Type here...',
         value,
         onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
             onChange?.(e.target.value),
     };
 
     return (
-        <div className="text-input">
-            <label htmlFor={id}>{label}</label>
-            {variant === 'textarea' ?
-                (
-                    <textarea {...commonProps} />
-                ) :
-                (
-                    <input
-                        {...commonProps}
-                        type={variant}
-                    />
-                )}
+        <div className={textInputClass}>
+            <label htmlFor={id}>
+                {label}
+                {warningMessage && <span className="text-input-warning">{warningMessage}</span>}
+            </label>
+            {variant === 'textarea' ? (
+                <textarea {...commonProps} />
+            ) : (
+                <input {...commonProps} type={variant} />
+            )}
         </div>
     );
 };
