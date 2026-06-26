@@ -1,0 +1,98 @@
+/* Base do Componente Button */
+.btn {
+    width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-family);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-sm);
+    height: var(--button-height);
+    padding: 0 var(--spacing-lg);
+    border-radius: var(--radius-md);
+    border: var(--border-width-sm) solid transparent;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: var(--shadow-sm);
+    transition: background-color var(--transition-fast),
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        opacity var(--transition-fast);
+}
+
+/* Comportamentos de Foco Global */
+.btn:focus-visible {
+    outline: var(--border-width-md) solid var(--color-primary);
+    outline-offset: var(--border-width-md);
+}
+
+/* Estado Desabilitado Global */
+.btn:disabled {
+    cursor: not-allowed;
+    background-color: var(--color-surface-hover);
+    border-color: var(--color-border);
+    color: var(--color-text-disabled);
+    box-shadow: none;
+    opacity: 0.7;
+}
+
+/* ==========================================================================
+   VARIANTES DE ESTILO
+   ========================================================================== */
+
+/* Variante: Primary */
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background-color: var(--color-primary-dark);
+}
+
+.btn-primary:active:not(:disabled) {
+    opacity: 0.9;
+}
+
+/* Variante: Secondary */
+.btn-secondary {
+    background-color: var(--color-secondary);
+    color: var(--color-text-inverse);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    filter: brightness(0.9);
+}
+
+.btn-secondary:active:not(:disabled) {
+    opacity: 0.9;
+}
+
+/* Variante: Danger */
+.btn-danger {
+    background-color: var(--color-danger);
+    color: var(--color-text-inverse);
+}
+
+.btn-danger:hover:not(:disabled) {
+    filter: brightness(0.9);
+}
+
+.btn-danger:active:not(:disabled) {
+    opacity: 0.9;
+}
+
+/* Variante: Success */
+.btn-success {
+    background-color: var(--color-success);
+    color: var(--color-text-inverse);
+}
+
+.btn-success:hover:not(:disabled) {
+    filter: brightness(0.9);
+}
+
+.btn-success:active:not(:disabled) {
+    opacity: 0.9;
+}
