@@ -10,7 +10,9 @@ import './Sidebar.css';
 
 export const Sidebar = () => {
 
-    const [darkMode, setDarkMode] = useState(false);
+    const [darkMode, setDarkMode] = useState(() => {
+        return localStorage.getItem('theme') === 'dark';
+    });
 
     const handleThemeToggle = () => {
         setDarkMode(!darkMode);
@@ -21,8 +23,10 @@ export const Sidebar = () => {
     useEffect(() => {
         if (darkMode) {
             document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
         } else {
             document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
         }
     }, [darkMode]);
 
