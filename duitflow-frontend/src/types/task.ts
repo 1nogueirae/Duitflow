@@ -9,7 +9,6 @@ export interface Task {
     updatedAt: string;
 }
 
-// DTO para criar/editar
 export type TaskDTO = {
     title: string;
     description?: string;

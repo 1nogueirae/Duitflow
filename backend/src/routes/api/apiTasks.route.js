@@ -34,6 +34,8 @@ router.put('/:id', taskMiddleware, async (req, res) => {
         task.title = data.title
         task.description = data.description
         task.status = data.status ?? task.status
+        task.dueDate = data.dueDate ?? task.dueDate
+        task.dueTime = data.dueTime ?? task.dueTime
         await task.save()
         res.status(200).json({ message: `Task updated successfully`, task })
     } else {

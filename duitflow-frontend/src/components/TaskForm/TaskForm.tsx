@@ -48,7 +48,7 @@ export const TaskForm = ({ initialData, isEditing, onSubmit, onCancel }: TaskFor
         }
 
         if (hasErrors) return;
-
+        
         onSubmit({
             title,
             description: description || undefined,
@@ -63,7 +63,7 @@ export const TaskForm = ({ initialData, isEditing, onSubmit, onCancel }: TaskFor
             setTitle(initialData.title ?? '');
             setDescription(initialData.description ?? '');
             setDueDate(initialData.dueDate ? new Date(initialData.dueDate).toISOString().split('T')[0] : '');
-            setDueTime(initialData.dueDate ? new Date(initialData.dueDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '');
+            setDueTime(initialData.dueTime ? initialData.dueTime : '');
             setTitleWarningMessage(undefined);
             setDescriptionWarningMessage(undefined);
         }
@@ -71,7 +71,6 @@ export const TaskForm = ({ initialData, isEditing, onSubmit, onCancel }: TaskFor
 
     return (
         <>
-            {console.log(isEditing)}
             <form className="task-form" onSubmit={handleSubmit}>
                 <Input
                     id="task-title"

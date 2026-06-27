@@ -144,7 +144,9 @@ function Dashboard() {
                             initialData={editingTask ? {
                                 title: editingTask.title,
                                 description: editingTask.description,
-                                status: editingTask.status
+                                status: editingTask.status,
+                                dueDate: editingTask.dueDate,
+                                dueTime: editingTask.dueTime
                             } : undefined}
                             isEditing={editingTaskId ? true : false}
                             onSubmit={(data) => {
