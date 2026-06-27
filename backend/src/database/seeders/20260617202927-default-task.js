@@ -10,7 +10,7 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
       dueDate: "2026-07-01",
-      dueTime: "10:00:00"
+      dueTime: "10:00"
     }], {});
   },
 
