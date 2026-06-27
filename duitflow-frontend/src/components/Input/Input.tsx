@@ -6,8 +6,9 @@ interface InputProps {
     value?: string;
     placeholder?: string;
     onChange?: (value: string) => void;
-    variant?: 'text' | 'password' | 'email' | 'number' | 'textarea';
+    variant?: 'text' | 'password' | 'email' | 'number' | 'textarea' | 'date' | 'time';
     warningMessage?: string;
+    disabled?: boolean;
 }
 
 export const Input = ({
@@ -18,6 +19,7 @@ export const Input = ({
     onChange,
     variant = 'text',
     warningMessage,
+    disabled = false,
 }: InputProps) => {
     const hasWarning = !!warningMessage; // 👈 Deriva do warningMessage
     const textInputClass = `text-input ${hasWarning ? 'warning' : ''}`;
@@ -28,6 +30,7 @@ export const Input = ({
         value,
         onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
             onChange?.(e.target.value),
+        disabled,
     };
 
     return (

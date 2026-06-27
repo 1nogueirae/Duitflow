@@ -2,12 +2,21 @@ export interface Task {
     id: number;
     title: string;
     description: string;
-    status: string;
+    status: TaskStatus;
+    dueDate: string | null;
+    dueTime: string | null;
     createdAt: string;
     updatedAt: string;
 }
 
-export type TaskDTO = Partial<Pick<Task, 'title' | 'description' | 'status'>>;
+// DTO para criar/editar
+export type TaskDTO = {
+    title: string;
+    description?: string;
+    status?: TaskStatus;
+    dueDate?: string | null;
+    dueTime?: string | null;
+};
 
 export const TaskStatus = {
     PENDING: 'pending',

@@ -8,7 +8,9 @@ module.exports = {
       description: 'This is the default task',
       status: 'pending',
       createdAt: new Date(),
-      updatedAt: new Date()
+      updatedAt: new Date(),
+      dueDate: "2026-07-01",
+      dueTime: "10:00:00"
     }], {});
   },
 

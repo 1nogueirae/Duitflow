@@ -80,3 +80,21 @@
 .task-card-status-done {
   background: var(--color-success);
 }
+
+.task-card-footer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  gap: var(--spacing-sm);
+
+  margin-top: var(--spacing-md);
+}
+
+.task-card-due-date,
+.task-card-due-time {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+}

@@ -9,3 +9,8 @@
     display: flex;
     gap: var(--spacing-md);
 }
+
+.task-form-date-time {
+    display: flex;
+    gap: var(--spacing-md);
+}

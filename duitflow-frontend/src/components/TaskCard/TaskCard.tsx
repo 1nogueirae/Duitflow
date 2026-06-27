@@ -1,5 +1,9 @@
+import { formatTaskDate } from '../../utils/utils';
+
 import type { Task, TaskStatus } from '../../types/task';
 import { statusLabels } from '../../types/task';
+
+import { FaRegClock } from "react-icons/fa6";
 
 import { Button } from '../Button/Button';
 
@@ -10,7 +14,6 @@ interface TaskCardProps {
     onEdit: (id: number) => void;
     onDelete: (id: number) => void;
 }
-
 
 export const TaskCard = ({ task, onEdit, onDelete }: TaskCardProps) => {
     const statusClass =
@@ -47,6 +50,18 @@ export const TaskCard = ({ task, onEdit, onDelete }: TaskCardProps) => {
             </div>
             {task.description && (
                 <p className="task-card-description">{task.description}</p>
+            )}
+            {task.dueDate && (
+                <div className="task-card-footer">
+                    <FaRegClock size={14} />
+                    <p className="task-card-due-date">
+                        {formatTaskDate(task.dueDate)}
+                    </p>
+
+                    {task.dueTime && (
+                        <p className="task-card-due-time"> • {task.dueTime}</p>
+                    )}
+                </div>
             )}
         </div>
     );
