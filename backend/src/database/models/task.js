@@ -4,27 +4,45 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Task extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
     }
   }
   Task.init({
-    title: DataTypes.STRING,
-    description: DataTypes.TEXT,
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+
+    description: {
+      type: DataTypes.TEXT
+    },
+
     status: {
       type: DataTypes.ENUM('pending', 'in_progress', 'done'),
       defaultValue: 'pending',
       allowNull: false
-    }
+    },
 
+    dueDate: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
+    },
+
+    dueTime: {
+      type: DataTypes.TIME,
+      allowNull: true
+    }
   }, {
     sequelize,
     modelName: 'Task',
+
+    validate: {
+      dueTimeRequiresDate() {
+        if (this.dueTime && !this.dueDate) {
+          throw new Error('dueTime não pode existir sem dueDate');
+        }
+      }
+    }
   });
   return Task;
 };
