@@ -6,7 +6,14 @@ interface InputProps {
     value?: string;
     placeholder?: string;
     onChange?: (value: string) => void;
-    variant?: 'text' | 'password' | 'email' | 'number' | 'textarea' | 'date' | 'time';
+    variant?:
+    | 'text'
+    | 'password'
+    | 'email'
+    | 'number'
+    | 'textarea'
+    | 'date'
+    | 'time';
     warningMessage?: string;
     disabled?: boolean;
 }
@@ -21,7 +28,7 @@ export const Input = ({
     warningMessage,
     disabled = false,
 }: InputProps) => {
-    const hasWarning = !!warningMessage; // 👈 Deriva do warningMessage
+    const hasWarning = !!warningMessage;
     const textInputClass = `text-input ${hasWarning ? 'warning' : ''}`;
 
     const commonProps = {
