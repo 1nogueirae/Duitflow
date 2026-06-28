@@ -28,7 +28,7 @@
 }
 
 .modal-content {
-  width: min(90vw, 600px);
+  width: min(30vw, 600px);
   max-height: 90vh;
   overflow-y: auto;
 
@@ -40,4 +40,16 @@
   cursor: pointer;
   color: var(--color-text-inverse);
   transition: color var(--transition-fast);
+}
+
+.modal-content.sm {
+  width: 250px;
+}
+
+.modal-content.md {
+  width: min(50vw, 600px);
+}
+
+.modal-content.lg {
+  width: min(60vw, 900px);
 }

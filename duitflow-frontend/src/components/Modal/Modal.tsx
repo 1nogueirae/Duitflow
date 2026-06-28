@@ -8,6 +8,7 @@ interface ModalProps {
     onClose: () => void;
     children: ReactNode;
     title: string;
+    size?: 'sm' | 'md' | 'lg';
 }
 
 export function Modal({
@@ -15,6 +16,7 @@ export function Modal({
     onClose,
     children,
     title = 'Modal Title',
+    size = 'md'
 }: ModalProps) {
 
     useEffect(() => {
@@ -41,7 +43,7 @@ export function Modal({
             onClick={onClose}
         >
             <div
-                className="modal-content"
+                className={`modal-content ${size}`}
                 onClick={(event) => event.stopPropagation()}
             >
                 <div className="modal-header">
