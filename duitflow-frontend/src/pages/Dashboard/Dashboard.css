@@ -7,11 +7,16 @@
     color: var(--color-text-secondary);
 }
 
+.secondary-text.inverse {
+    color: var(--color-text-inverse);
+}
+
 .dashboard-header {
     margin-bottom: var(--spacing-lg);
 }
 
-h1 {
+.dashboard-header h1,
+.tasks-header h1 {
     font-size: var(--font-size-3xl);
     margin-bottom: var(--spacing-sm);
 }
@@ -20,6 +25,7 @@ h1 {
     display: flex;
     gap: var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
+    user-select: none;
 }
 
 .dashboard-stat {
@@ -31,6 +37,53 @@ h1 {
         box-shadow var(--transition-fast),
         transform var(--transition-fast);
     width: 100%
+}
+
+.dashboard-stat.selected {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+}
+
+.dashboard-stat.pending:hover {
+    border-color: var(--color-warning);
+}
+
+.dashboard-stat.in_progress:hover {
+    border-color: var(--color-primary);
+}
+
+.dashboard-stat.done:hover {
+    border-color: var(--color-success);
+}
+
+.dashboard-stat.pending.selected {
+    background: var(--color-warning);
+    color: var(--color-text-inverse);
+}
+
+.dashboard-stat.in_progress.selected {
+    background: var(--color-primary);
+    color: var(--color-text-inverse);
+}
+
+.dashboard-stat.done.selected {
+    background: var(--color-success);
+    color: var(--color-text-inverse);
+}
+
+.dashboard-stat {
+    background: var(--color-surface);
+    border: 2px solid transparent;
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+    transition:
+        box-shadow var(--transition-fast),
+        transform var(--transition-fast),
+        background-color var(--transition-fast),
+        border-color var(--transition-fast);
+    width: 100%;
+    cursor: pointer;
 }
 
 .fab-extended {
