@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 
 import { Input } from '../Input/Input';
 import { Button } from '../Button/Button';
+import { Select } from '../Select/Select';
 
 import type { TaskDTO } from '../../types/task';
+import { TaskStatus, statusLabels } from '../../types/task';
 
 import './TaskForm.css';
 
@@ -17,6 +19,7 @@ interface TaskFormProps {
 export const TaskForm = ({ initialData, isEditing, onSubmit, onCancel }: TaskFormProps) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const [status, setStatus] = useState('');
     const [dueDate, setDueDate] = useState('');
     const [dueTime, setDueTime] = useState('');
     const [titleWarningMessage, setTitleWarningMessage] = useState<string | undefined>();
@@ -46,11 +49,11 @@ export const TaskForm = ({ initialData, isEditing, onSubmit, onCancel }: TaskFor
         }
 
         if (hasErrors) return;
-        
+
         onSubmit({
             title,
             description: description || undefined,
-            status: initialData?.status || 'pending',
+            status: status || 'pending',
             dueDate: dueDate || undefined,
             dueTime: dueTime || undefined,
         } as TaskDTO);
@@ -60,6 +63,7 @@ export const TaskForm = ({ initialData, isEditing, onSubmit, onCancel }: TaskFor
         if (initialData) {
             setTitle(initialData.title ?? '');
             setDescription(initialData.description ?? '');
+            setStatus(initialData.status ?? 'pending');
             setDueDate(initialData.dueDate ? new Date(initialData.dueDate).toISOString().split('T')[0] : '');
             setDueTime(initialData.dueTime ? initialData.dueTime : '');
             setTitleWarningMessage(undefined);
@@ -105,6 +109,18 @@ export const TaskForm = ({ initialData, isEditing, onSubmit, onCancel }: TaskFor
                         disabled={!dueDate}
                     />
                 </div>
+                {isEditing && (
+                    <Select
+                        id="task-status"
+                        label="Task Status"
+                        value={status}
+                        onChange={setStatus}
+                        options={Object.values(TaskStatus).map((status) => ({
+                            value: status,
+                            label: statusLabels[status],
+                        }))}
+                    />
+                )}
                 <div className="task-form-actions">
                     <Button
                         id="create-task"
