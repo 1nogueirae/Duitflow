@@ -9,12 +9,15 @@ import { TaskCard } from '../../components/TaskCard/TaskCard';
 import { TaskForm } from '../../components/TaskForm/TaskForm'
 
 import { FaPlus } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa6";
 
 import './Dashboard.css';
+import { Button } from '../../components/Button/Button';
 
 function Dashboard() {
     const [tasks, setTasks] = useState<Task[]>([]);
     const [showForm, setShowForm] = useState(false);
+    const [taskToDelete, setTaskToDelete] = useState<number | null>(null);
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -125,7 +128,7 @@ function Dashboard() {
                                 key={task.id}
                                 task={task}
                                 onEdit={openEditForm}
-                                onDelete={handleDeleteTask} />
+                                onDelete={setTaskToDelete} />
                         ))}
                     </div>
 
@@ -153,6 +156,34 @@ function Dashboard() {
                                 editingTaskId ? handleEditTask(editingTaskId, data) : handleCreateTask(data)
                             }}
                             onCancel={() => setShowForm(false)} />
+                    </Modal>
+
+                    <Modal
+                        open={taskToDelete !== null}
+                        onClose={() => setTaskToDelete(null)}
+                        title="Confirm Delete"
+                        size="sm"
+                    >
+                        <div className="delete-confirmation-modal">
+                            <p>Are you sure you want to delete this task?</p>
+
+                            <FaTrash size={50} color="var(--color-danger)" />
+
+                            <Button
+                                id="confirm-delete-button"
+                                label="Confirm Delete"
+                                onClick={() => {
+                                    if (taskToDelete !== null) {
+                                        handleDeleteTask(taskToDelete);
+                                        setTaskToDelete(null);
+                                    }
+                                }}
+                                variant="danger"
+                                type="button"
+                            >
+                            </Button>
+                        </div>
+
                     </Modal>
                 </div>
             </>

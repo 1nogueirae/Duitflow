@@ -32,9 +32,7 @@ export const TaskForm = ({ initialData, isEditing, onSubmit, onCancel }: TaskFor
         setDescriptionWarningMessage(undefined);
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-
+    const handleSubmit = () => {
         let hasErrors = false;
 
         if (title.trim() === '') {
@@ -71,7 +69,7 @@ export const TaskForm = ({ initialData, isEditing, onSubmit, onCancel }: TaskFor
 
     return (
         <>
-            <form className="task-form" onSubmit={handleSubmit}>
+            <div className="task-form">
                 <Input
                     id="task-title"
                     placeholder="Enter task title..."
@@ -111,7 +109,7 @@ export const TaskForm = ({ initialData, isEditing, onSubmit, onCancel }: TaskFor
                     <Button
                         id="create-task"
                         label={isEditing ? 'Edit Task' : 'Create Task'}
-                        type="submit"
+                        onClick={handleSubmit}
                     />
                     <Button
                         id="cancel-task"
@@ -120,7 +118,7 @@ export const TaskForm = ({ initialData, isEditing, onSubmit, onCancel }: TaskFor
                         onClick={onCancel}
                     />
                 </div>
-            </form>
+            </div>
         </>
     );
 };
