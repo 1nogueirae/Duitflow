@@ -5,10 +5,11 @@ const bcrypt = require('bcrypt');
 /** @type {import('sequelize-cli').Seeder} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    const passwordHash = await bcrypt.hash('123456', 10);
+    const passwordHash = await bcrypt.hash('Senha@123', 10);
 
     await queryInterface.bulkInsert('Users', [
       {
+        name: 'Admin User',
         email: 'admin@duitflow.com',
         password: passwordHash,
         role: 'admin',
@@ -16,6 +17,7 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
+        name: 'Regular User',
         email: 'user@duitflow.com',
         password: passwordHash,
         role: 'user',
