@@ -6,6 +6,7 @@ const { User } = require('../../database/models')
 
 const registerMiddleware = require('../../middlewares/register.middleware')
 const loginMiddleware = require('../../middlewares/login.middleware')
+const authMiddleware = require('../../middlewares/auth.middleware')
 
 const express = require('express');
 const router = express.Router();
@@ -18,7 +19,9 @@ const createToken = (user) => {
     }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN })
 }
 
-router.get('/', async (req, res) => {
+router.get('/', authMiddleware, async (req, res) => {
+    if (req.user.role !== 'admin') return res.status(403).json({ error: 'Access denied' })
+
     const users = await User.findAll()
     const usersFiltered = users.map(user => {
         return {
@@ -28,7 +31,7 @@ router.get('/', async (req, res) => {
             role: user.role
         }
     })
-    res.status(200).json({ message: `Users searched successfully`, users: users })
+    res.status(200).json({ message: `Users searched successfully`, users: usersFiltered })
 })
 
 router.post('/register', registerMiddleware, async (req, res) => {
