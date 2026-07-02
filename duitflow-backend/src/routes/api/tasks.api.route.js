@@ -1,7 +1,7 @@
 const { Task: Tasks } = require('../../database/models')
 const express = require('express');
 const router = express.Router();
-const taskMiddleware = require('../../middlewares/tasksMiddleware')
+const taskMiddleware = require('../../middlewares/tasks.middleware')
 
 router.get('/', async (req, res) => {
     const tasks = await Tasks.findAll()
