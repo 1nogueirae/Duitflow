@@ -50,6 +50,7 @@ export function RegisterForm({ onRegister }: RegisterFormProps) {
             hasErrors = true;
         } else {
             nameValue.split(' ').length < 2 && setNameWarningMessage('Please at least enter your first and last name');
+            hasErrors = true;
         }
 
         const emailValue = email.trim();
