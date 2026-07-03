@@ -5,6 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Task extends Model {
     static associate(models) {
+      Task.belongsTo(models.User, { foreignKey: 'userId', as: 'user' });
     }
   }
   Task.init({
@@ -27,15 +28,24 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATEONLY,
       allowNull: true
     },
-
     dueTime: {
       type: DataTypes.TIME,
       allowNull: true
-    }
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: 'Users',
+        key: 'id'
+      },
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE'
+    },
   }, {
     sequelize,
     modelName: 'Task',
-
+    tableName: 'Tasks',
     validate: {
       dueTimeRequiresDate() {
         if (this.dueTime && !this.dueDate) {

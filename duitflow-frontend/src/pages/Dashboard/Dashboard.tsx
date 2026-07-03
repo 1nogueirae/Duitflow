@@ -243,7 +243,7 @@ function Dashboard() {
                     <Button
                         id="confirm-delete-button"
                         label="Confirm Delete"
-                        variant="danger"
+                        className="btn-danger"
                         type="button"
                         onClick={() => {
                             if (taskToDelete !== null) {

@@ -2,7 +2,8 @@ require('dotenv').config();
 
 const cors = require('cors')
 
-const apiTasksRoute = require('./routes/api/apiTasks.route')
+const apiTasksRoute = require('./routes/api/tasks.api.route')
+const apiUsersRoute = require('./routes/api/users.api.route')
 
 const express = require('express')
 const app = express()
@@ -12,6 +13,11 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/api/tasks', apiTasksRoute)
+app.use('/api/users', apiUsersRoute)
+
+app.get('/', (req, res) => {
+    res.status(200).json({ message: 'Welcome to the Duitflow API' })
+})
 
 app.use((err, req, res, next) => {
     const status = err.status ?? 500
