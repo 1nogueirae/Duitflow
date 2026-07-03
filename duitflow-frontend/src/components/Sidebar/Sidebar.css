@@ -43,7 +43,6 @@
 
 .menu a:hover {
     background-color: var(--color-surface-hover);
-    color: var(--color-primary);
 }
 
 .menu a.active {
@@ -51,7 +50,18 @@
     color: var(--color-primary);
 }
 
-.theme-toggle {
+.sidebar-footer {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
     margin-top: auto;
+    padding-top: var(--spacing-md);
+    border-top: var(--border-width-sm) solid var(--color-border);
+    justify-content: space-between;
+}
+
+.theme-toggle,
+.logout-button {
     cursor: pointer;
 }
+

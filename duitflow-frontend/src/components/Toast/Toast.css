@@ -1,0 +1,98 @@
+.toast {
+    position: fixed;
+    top: var(--spacing-xl);
+    right: var(--spacing-xl);
+    z-index: var(--z-toast);
+
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+
+    max-width: min(24rem, calc(100vw - var(--spacing-xl) * 2));
+    padding: var(--spacing-md);
+    border-radius: var(--radius-lg);
+    border: var(--border-width-sm) solid var(--color-border);
+    background-color: var(--color-surface);
+    box-shadow: var(--shadow-md);
+}
+
+.toast-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.toast-message {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-md);
+    color: var(--color-text);
+}
+
+.toast-close-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    background: transparent;
+    color: var(--color-text-muted);
+    padding: var(--spacing-2xs);
+    border-radius: var(--radius-full);
+    transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.toast-close-button:hover {
+    color: var(--color-text);
+    background-color: var(--color-surface-hover);
+}
+
+.toast-close-button:focus-visible {
+    outline: var(--border-width-md) solid var(--color-primary);
+    outline-offset: var(--border-width-2xs, 2px);
+}
+
+.toast-error {
+    border-color: color-mix(in srgb, var(--color-danger) 30%, var(--color-border));
+    background-color: color-mix(in srgb, var(--color-danger) 10%, var(--color-surface));
+}
+
+.toast-error .toast-message {
+    color: var(--color-danger);
+}
+
+.toast-success {
+    border-color: color-mix(in srgb, var(--color-success) 30%, var(--color-border));
+    background-color: color-mix(in srgb, var(--color-success) 10%, var(--color-surface));
+}
+
+.toast-success .toast-message {
+    color: var(--color-success);
+}
+
+.toast-warning {
+    border-color: color-mix(in srgb, var(--color-warning) 30%, var(--color-border));
+    background-color: color-mix(in srgb, var(--color-warning) 10%, var(--color-surface));
+}
+
+.toast-warning .toast-message {
+    color: var(--color-warning);
+}
+
+.toast-info {
+    border-color: color-mix(in srgb, var(--color-primary) 25%, var(--color-border));
+    background-color: color-mix(in srgb, var(--color-primary) 8%, var(--color-surface));
+}
+
+.toast-info .toast-message {
+    color: var(--color-text);
+}
+
+@media (max-width: 640px) {
+    .toast {
+        top: var(--spacing-md);
+        right: var(--spacing-md);
+        left: var(--spacing-md);
+        max-width: none;
+    }
+}

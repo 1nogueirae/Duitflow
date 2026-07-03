@@ -18,6 +18,6 @@ module.exports = {
             enum: ['admin', 'user']
         }
     },
-    required: ['name', 'email', 'password', 'role'],
+    required: ['name', 'email', 'password'],
     additionalProperties: false
 }

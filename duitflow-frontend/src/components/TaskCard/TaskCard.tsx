@@ -38,12 +38,12 @@ export const TaskCard = ({ task, onEdit, onDelete }: TaskCardProps) => {
                 <div className="task-card-actions">
                     <Button
                         label="Edit"
-                        variant="secondary"
+                        className="btn-secondary"
                         onClick={() => onEdit(task.id)}
                     />
                     <Button
                         label="Delete"
-                        variant="danger"
+                        className="btn-danger"
                         onClick={() => onDelete(task.id)}
                     />
                 </div>

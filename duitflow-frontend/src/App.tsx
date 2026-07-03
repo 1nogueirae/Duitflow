@@ -10,27 +10,27 @@ import Register from './pages/Register/Register'
 
 import { Sidebar } from './components/Sidebar/Sidebar'
 
+import { useAuth } from './contexts/AuthContext';
 
 function App() {
   const location = useLocation()
   const navigate = useNavigate()
+  const { isAuthenticated } = useAuth()
 
   const sidebarLocations = ['/home', '/dashboard']
   const showSidebar = sidebarLocations.includes(location.pathname)
   const authLocations = ['/login', '/register']
   const isAuthRoute = authLocations.includes(location.pathname)
-
-  const isLoggedIn = Boolean(localStorage.getItem('token'))
-
+  
   useEffect(() => {
-    if (!isLoggedIn && !isAuthRoute) {
-      navigate('/login', { replace: true })
+    if (!isAuthenticated && !isAuthRoute) {
+      navigate('/login', { replace: true });
     }
 
-    if (isLoggedIn && isAuthRoute) {
-      navigate('/home', { replace: true })
+    if (isAuthenticated && isAuthRoute) {
+      navigate('/home', { replace: true });
     }
-  }, [isAuthRoute, isLoggedIn, location.pathname, navigate])
+  }, [isAuthenticated, isAuthRoute, navigate])
 
   if (isAuthRoute) {
     return (
@@ -50,7 +50,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
-          
+
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>

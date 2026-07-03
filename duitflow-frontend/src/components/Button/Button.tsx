@@ -4,7 +4,7 @@ interface ButtonProps {
     id?: string;
     label?: string;
     onClick?: () => void;
-    variant?: 'primary' | 'secondary' | 'danger' | 'success';
+    className?: string | string[];
     type?: 'button' | 'submit' | 'reset';
     disabled?: boolean;
 }
@@ -13,16 +13,22 @@ export const Button = ({
     id,
     label = 'Click me',
     onClick,
-    variant = 'primary',
+    className,
     type = 'button',
     disabled = false,
 }: ButtonProps) => {
+    const classes = Array.isArray(className)
+        ? className
+        : className
+            ? [className]
+            : [];
+
     return (
         <button
             id={id}
             type={type}
             disabled={disabled}
-            className={`btn btn-${variant}`}
+            className={['btn', ...classes].join(' ')}
             onClick={onClick}
         >
             {label}

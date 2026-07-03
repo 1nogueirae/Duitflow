@@ -125,12 +125,13 @@ export const TaskForm = ({ initialData, isEditing, onSubmit, onCancel }: TaskFor
                     <Button
                         id="create-task"
                         label={isEditing ? 'Edit Task' : 'Create Task'}
+                        className="btn-primary"
                         onClick={handleSubmit}
                     />
                     <Button
                         id="cancel-task"
                         label="Cancel"
-                        variant={'secondary'}
+                        className={['btn-outline', 'btn-secondary']}
                         onClick={onCancel}
                     />
                 </div>

@@ -96,3 +96,28 @@
 .btn-success:active:not(:disabled) {
     opacity: 0.9;
 }
+
+.btn-outline {
+    background-color: var(--color-surface);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.btn-outline:hover:not(:disabled) {
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
+}
+
+.btn-outline:active:not(:disabled) {
+    opacity: 0.9;
+}
+
+.btn-outline.btn-secondary {
+    color: var(--color-secondary);
+    border-color: var(--color-secondary);
+}
+
+.btn-outline.btn-secondary:hover:not(:disabled) {
+    background-color: var(--color-secondary);
+    color: var(--color-text-inverse);
+}
