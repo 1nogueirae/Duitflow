@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 
 import type { Task, TaskDTO, TaskStatus } from '../../types/task';
 
-import { createTask, readMyTasks, updateTask, deleteTask } from '../../services/task';
+import { createTask, readTasks, updateTask, deleteTask } from '../../services/task';
 
 import { Modal } from '../../components/Modal/Modal';
 import { TaskCard } from '../../components/TaskCard/TaskCard';
@@ -46,7 +46,7 @@ function DashboardStat({
 
 function Dashboard() {
 
-    const { token } = useAuth();
+    const { token, user } = useAuth();
 
     const [tasks, setTasks] = useState<Task[]>([]);
     const [showForm, setShowForm] = useState(false);
@@ -86,8 +86,13 @@ function Dashboard() {
             return;
         }
 
+        if (!user) {
+            setIsLoading(false);
+            return;
+        }
+
         try {
-            const data = await readMyTasks(token);
+            const data = await readTasks(token);
             setTasks(data.tasks);
         } catch (err) {
             console.error('Failed to load tasks', err);

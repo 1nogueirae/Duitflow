@@ -25,7 +25,7 @@ export async function createTask(taskData: TaskDTO, token: string): Promise<Task
     return data;
 }
 
-export async function readMyTasks(token: string): Promise<tasksResponse> {
+export async function readTasks(token: string): Promise<tasksResponse> {
     const response = await fetch(`${API_URL}/me`, {
         method: 'GET',
         headers: {

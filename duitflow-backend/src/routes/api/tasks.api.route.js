@@ -5,17 +5,6 @@ const router = express.Router()
 const taskMiddleware = require('../../middlewares/tasks.middleware')
 const authMiddleware = require('../../middlewares/auth.middleware')
 
-router.get('/', authMiddleware, async (req, res) => {
-    if (req.user.role !== 'admin') return res.status(403).json({ error: 'Access denied' })
-
-    const tasks = await Task.findAll()
-
-    return res.status(200).json({
-        message: 'Tasks searched successfully',
-        tasks
-    })
-})
-
 router.get('/me', authMiddleware, async (req, res) => {
     const tasks = await Task.findAll({
         where: {
