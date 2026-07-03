@@ -14,6 +14,7 @@ const router = express.Router();
 const createToken = (user) => {
     return jwt.sign({
         id: user.id,
+        name: user.name,
         email: user.email,
         role: user.role
     }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN })
@@ -53,7 +54,16 @@ router.post('/register', registerMiddleware, async (req, res) => {
 
     const token = createToken(newUser)
 
-    res.status(201).json({ message: 'User created successfully', token })
+    res.status(201).json({
+        message: 'User created successfully',
+        token: token,
+        user: {
+            id: newUser.id,
+            name: newUser.name,
+            email: newUser.email,
+            role: newUser.role
+        }
+    })
 
 })
 
@@ -71,7 +81,16 @@ router.post('/login', loginMiddleware, async (req, res) => {
 
     const token = createToken(existingUser)
 
-    res.json({ message: 'Login successful', token })
+    res.json({
+        message: 'Login successful',
+        token: token,
+        user: {
+            id: existingUser.id,
+            name: existingUser.name,
+            email: existingUser.email,
+            role: existingUser.role
+        }
+    })
 })
 
 module.exports = router

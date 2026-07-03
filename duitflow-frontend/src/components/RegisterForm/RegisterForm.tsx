@@ -48,6 +48,8 @@ export function RegisterForm({ onRegister }: RegisterFormProps) {
         if (nameValue === '') {
             setNameWarningMessage('Name is required');
             hasErrors = true;
+        } else {
+            nameValue.split(' ').length < 2 && setNameWarningMessage('Please at least enter your first and last name');
         }
 
         const emailValue = email.trim();
@@ -91,7 +93,7 @@ export function RegisterForm({ onRegister }: RegisterFormProps) {
                 <Input
                     id="name"
                     placeholder="Enter your name..."
-                    label="Name"
+                    label="Name *"
                     value={name}
                     variant="text"
                     onChange={handleNameChange}
@@ -100,7 +102,7 @@ export function RegisterForm({ onRegister }: RegisterFormProps) {
                 <Input
                     id="email"
                     placeholder="Enter your email..."
-                    label="Email"
+                    label="Email *"
                     value={email}
                     variant="email"
                     onChange={handleEmailChange}
@@ -109,7 +111,7 @@ export function RegisterForm({ onRegister }: RegisterFormProps) {
                 <Input
                     id="password"
                     placeholder="Enter your password..."
-                    label="Password"
+                    label="Password *"
                     value={password}
                     variant="password"
                     onChange={handlePasswordChange}

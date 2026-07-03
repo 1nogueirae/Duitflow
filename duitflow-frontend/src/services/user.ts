@@ -1,14 +1,17 @@
-import type { UserDTO } from '../types/user';
+import type { UserDTO, UserPublic } from '../types/user';
 
 const API_URL = 'http://localhost:3000/api/users';
 
 type LoginResponse = {
+    message: string;
     token: string;
+    user: UserPublic;
 };
 
 type RegisterResponse = {
     message: string;
     token: string;
+    user: UserPublic;
 };
 
 type ApiErrorResponse = {

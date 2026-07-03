@@ -15,6 +15,13 @@ export type UserDTO = {
     role?: UserRole;
 };
 
+export type UserPublic = {
+    id: number;
+    name: string;
+    email: string;
+    role: UserRole;
+};
+
 export const UserRole = {
     USER: 'user',
     ADMIN: 'admin',
