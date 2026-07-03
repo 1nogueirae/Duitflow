@@ -2,11 +2,17 @@ import type { Task, TaskDTO } from '../types/task';
 
 const API_URL = 'http://localhost:3000/api/tasks';
 
-export async function createTask(taskData: TaskDTO): Promise<Task> {
+type tasksResponse = {
+    message: string;
+    tasks: Task[];
+}
+
+export async function createTask(taskData: TaskDTO, token: string): Promise<Task> {
     const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(taskData)
     });
@@ -19,23 +25,28 @@ export async function createTask(taskData: TaskDTO): Promise<Task> {
     return data;
 }
 
-export async function readTasks(): Promise<Task[]> {
-    const response = await fetch(API_URL);
+export async function readMyTasks(token: string): Promise<tasksResponse> {
+    const response = await fetch(`${API_URL}/me`, {
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    });
 
-    if (!response.ok) {
-        throw new Error('Failed to fetch tasks');
-    }
+    if (!response.ok) throw new Error('Failed to fetch tasks');
 
-    const data: Task[] = await response.json();
+    const data: tasksResponse = await response.json();
 
     return data;
 }
 
-export async function updateTask(taskId: number, taskData: TaskDTO): Promise<Task> {
+export async function updateTask(taskId: number, taskData: TaskDTO, token: string): Promise<Task> {
     const response = await fetch(`${API_URL}/${taskId}`, {
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(taskData)
     });
@@ -48,9 +59,12 @@ export async function updateTask(taskId: number, taskData: TaskDTO): Promise<Tas
     return data;
 }
 
-export async function deleteTask(taskId: number): Promise<void> {
+export async function deleteTask(taskId: number, token: string): Promise<void> {
     const response = await fetch(`${API_URL}/${taskId}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
     });
 
     if (!response.ok) {
