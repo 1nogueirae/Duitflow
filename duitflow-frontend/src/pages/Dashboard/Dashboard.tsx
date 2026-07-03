@@ -9,6 +9,8 @@ import { TaskCard } from '../../components/TaskCard/TaskCard';
 import { TaskForm } from '../../components/TaskForm/TaskForm';
 import { Button } from '../../components/Button/Button';
 
+import { useAuth } from '../../contexts/AuthContext';
+
 import { FaPlus } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa6";
 
@@ -43,6 +45,9 @@ function DashboardStat({
 }
 
 function Dashboard() {
+
+    const { token, user } = useAuth();
+
     const [tasks, setTasks] = useState<Task[]>([]);
     const [showForm, setShowForm] = useState(false);
     const [taskToDelete, setTaskToDelete] = useState<number | null>(null);
@@ -52,16 +57,20 @@ function Dashboard() {
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const [editingTaskId, setEditingTaskId] =
-        useState<number | null>(null);
+    const [editingTaskId, setEditingTaskId] = useState<number | null>(null);
 
     const editingTask = tasks.find(
         t => t.id === editingTaskId
     );
 
     async function handleCreateTask(taskDTO: TaskDTO) {
+
+        if (!token) {
+            return;
+        }
+
         try {
-            await createTask(taskDTO);
+            await createTask(taskDTO, token);
             await handleLoadTasks();
             setShowForm(false);
         } catch (err) {
@@ -71,9 +80,20 @@ function Dashboard() {
 
     async function handleLoadTasks() {
         setIsLoading(true);
+
+        if (!token) {
+            setIsLoading(false);
+            return;
+        }
+
+        if (!user) {
+            setIsLoading(false);
+            return;
+        }
+
         try {
-            const data = await readTasks();
-            setTasks(data);
+            const data = await readTasks(token);
+            setTasks(data.tasks);
         } catch (err) {
             console.error('Failed to load tasks', err);
         } finally {
@@ -82,8 +102,13 @@ function Dashboard() {
     }
 
     async function handleEditTask(taskId: number, taskData: TaskDTO) {
+        if (!token) {
+            console.error('No token available for editing task');
+            return;
+        }
+
         try {
-            await updateTask(taskId, taskData);
+            await updateTask(taskId, taskData, token);
             await handleLoadTasks();
             setShowForm(false);
             setEditingTaskId(null);
@@ -93,8 +118,13 @@ function Dashboard() {
     }
 
     async function handleDeleteTask(taskId: number) {
+
+        if (!token) {
+            return;
+        }
+
         try {
-            await deleteTask(taskId);
+            await deleteTask(taskId, token);
             await handleLoadTasks();
         } catch (err) {
             console.error('Failed to delete task', err);
