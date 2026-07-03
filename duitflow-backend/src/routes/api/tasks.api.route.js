@@ -23,8 +23,6 @@ router.get('/me', authMiddleware, async (req, res) => {
         }
     })
 
-    if (tasks.length === 0) return res.status(404).json({ error: 'No tasks found for this user' })
-
     return res.status(200).json({
         message: 'Tasks searched successfully',
         tasks

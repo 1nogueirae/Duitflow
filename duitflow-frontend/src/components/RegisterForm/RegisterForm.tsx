@@ -48,8 +48,8 @@ export function RegisterForm({ onRegister }: RegisterFormProps) {
         if (nameValue === '') {
             setNameWarningMessage('Name is required');
             hasErrors = true;
-        } else {
-            nameValue.split(' ').length < 2 && setNameWarningMessage('Please at least enter your first and last name');
+        } else if (nameValue.split(' ').length < 2) {
+            setNameWarningMessage('Please at least enter your first and last name');
             hasErrors = true;
         }
 
@@ -72,7 +72,7 @@ export function RegisterForm({ onRegister }: RegisterFormProps) {
             return;
         }
 
-        onRegister({ name, email, password });
+        onRegister({ name: nameValue, email: emailValue, password: passwordValue });
     }
 
     return (

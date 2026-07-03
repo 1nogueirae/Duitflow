@@ -12,10 +12,6 @@ module.exports = {
         password: {
             type: 'string',
             minLength: 6
-        },
-        role: {
-            type: 'string',
-            enum: ['admin', 'user']
         }
     },
     required: ['name', 'email', 'password'],

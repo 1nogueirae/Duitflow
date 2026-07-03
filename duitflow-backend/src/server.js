@@ -15,7 +15,7 @@ app.use(express.json())
 app.use('/api/tasks', apiTasksRoute)
 app.use('/api/users', apiUsersRoute)
 
-app.use('/', (req, res) => {
+app.get('/', (req, res) => {
     res.status(200).json({ message: 'Welcome to the Duitflow API' })
 })
 

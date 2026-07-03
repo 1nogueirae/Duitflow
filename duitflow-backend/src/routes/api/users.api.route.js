@@ -49,7 +49,7 @@ router.post('/register', registerMiddleware, async (req, res) => {
         name: user.name,
         email: user.email,
         password: hashedPassword,
-        role: user.role || 'user'
+        role: 'user'
     })
 
     const token = createToken(newUser)

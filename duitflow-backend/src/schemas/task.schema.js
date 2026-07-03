@@ -21,14 +21,10 @@ module.exports = {
 
         dueTime: {
             type: 'string'
-        },
-
-        userId: {
-            type: 'integer'
         }
     },
 
-    required: ['title', 'status', 'userId'],
+    required: ['title', 'status'],
 
     additionalProperties: false
 };
