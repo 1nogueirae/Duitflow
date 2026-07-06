@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 
 import { MdDashboard, MdHome } from "react-icons/md";
-import { IoIosSettings } from "react-icons/io";
 import { FaMoon, FaSun } from "react-icons/fa6";
 import { CiLogout } from "react-icons/ci";
 
@@ -50,11 +49,6 @@ export const Sidebar = () => {
                 <NavLink to="/dashboard">
                     <MdDashboard />
                     Dashboard
-                </NavLink>
-
-                <NavLink to="/settings">
-                    <IoIosSettings />
-                    Settings
                 </NavLink>
             </div>
 
