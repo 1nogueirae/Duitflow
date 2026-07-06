@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import type { Task, TaskDTO, TaskStatus } from '../../types/task';
 import type { ToastVariant } from '../../components/Toast/Toast';
@@ -49,6 +50,8 @@ function DashboardStat({
 function Dashboard() {
 
     const { token, user } = useAuth();
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const [tasks, setTasks] = useState<Task[]>([]);
     const [showForm, setShowForm] = useState(false);
@@ -186,7 +189,11 @@ function Dashboard() {
 
     useEffect(() => {
         handleLoadTasks();
-    }, []);
+        if (location.state?.openCreate) {
+            openCreateForm();
+            navigate(location.pathname, { replace: true, state: {} });
+        }
+    }, [location.state]);
 
     if (isLoading) {
         return <p>Loading tasks...</p>;

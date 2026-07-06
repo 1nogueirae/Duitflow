@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
-
 import { NavLink } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 import { useAuth } from '../../contexts/AuthContext';
 
-import { MdDashboard, MdHome } from "react-icons/md";
-import { FaMoon, FaSun } from "react-icons/fa6";
-import { CiLogout } from "react-icons/ci";
+import { FaMoon, FaSun } from 'react-icons/fa6';
+import { CiLogout } from 'react-icons/ci';
+import { IoHomeOutline } from 'react-icons/io5';
+import { MdDashboard } from 'react-icons/md';
 
 import './Sidebar.css';
 
@@ -17,10 +17,7 @@ export const Sidebar = () => {
         return localStorage.getItem('theme') === 'dark';
     });
 
-    const handleThemeToggle = () => {
-        setDarkMode(!darkMode);
-    }
-
+    const handleThemeToggle = () => setDarkMode(!darkMode);
     const ThemeIcon = darkMode ? FaSun : FaMoon;
 
     useEffect(() => {
@@ -35,36 +32,23 @@ export const Sidebar = () => {
 
     return (
         <aside className="sidebar">
+            <NavLink to="/home" className="logo" title="Duitflow">D</NavLink>
 
-            <NavLink to="/home">
-                <div className="logo">Duitflow</div>
-            </NavLink>
-
-            <div className="menu">
-                <NavLink to="/home">
-                    <MdHome />
-                    Home
+            <nav className="menu">
+                <NavLink to="/home" title="Home">
+                    <IoHomeOutline size={22} />
                 </NavLink>
-
-                <NavLink to="/dashboard">
-                    <MdDashboard />
-                    Dashboard
+                <NavLink to="/dashboard" title="Dashboard">
+                    <MdDashboard size={22} />
                 </NavLink>
-            </div>
+            </nav>
 
             <div className="sidebar-footer">
-                <div className="logout-button"
-                    id="logout-button"
-                    onClick={logout}
-                >
-                    <CiLogout size={30} />
+                <div className="theme-toggle" onClick={handleThemeToggle} title="Toggle theme">
+                    <ThemeIcon size={20} />
                 </div>
-                <div className="theme-toggle"
-                    onClick={handleThemeToggle}
-                >
-                    <div>
-                        <ThemeIcon size={30} />
-                    </div>
+                <div className="logout-button" id="logout-button" onClick={logout} title="Logout">
+                    <CiLogout size={22} />
                 </div>
             </div>
         </aside>
