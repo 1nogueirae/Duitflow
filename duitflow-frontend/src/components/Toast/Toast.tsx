@@ -4,7 +4,7 @@ import { IoMdClose } from 'react-icons/io';
 
 import './Toast.css';
 
-type ToastVariant = 'error' | 'success' | 'warning' | 'info';
+export type ToastVariant = 'error' | 'success' | 'warning' | 'info';
 
 interface ToastProps {
     open: boolean;
@@ -20,7 +20,7 @@ export function Toast({
     message,
     variant = 'info',
     onClose,
-    duration = 5000,
+    duration = 3000,
     action,
 }: ToastProps) {
     useEffect(() => {

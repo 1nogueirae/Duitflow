@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 
 import type { Task, TaskDTO, TaskStatus } from '../../types/task';
+import type { ToastVariant } from '../../components/Toast/Toast';
 
 import { createTask, readTasks, updateTask, deleteTask } from '../../services/task';
 
@@ -8,6 +9,7 @@ import { Modal } from '../../components/Modal/Modal';
 import { TaskCard } from '../../components/TaskCard/TaskCard';
 import { TaskForm } from '../../components/TaskForm/TaskForm';
 import { Button } from '../../components/Button/Button';
+import { Toast } from '../../components/Toast/Toast';
 
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -55,6 +57,9 @@ function Dashboard() {
         TaskStatus | 'all'
     >('all');
 
+    const [toastMessage, setToastMessage] = useState<string | null>(null);
+    const [toastVariant, setToastVariant] = useState<ToastVariant>('success');
+
     const [isLoading, setIsLoading] = useState(false);
 
     const [editingTaskId, setEditingTaskId] = useState<number | null>(null);
@@ -71,10 +76,14 @@ function Dashboard() {
 
         try {
             await createTask(taskDTO, token);
+            setToastVariant('success');
+            setToastMessage('Task created successfully!');
             await handleLoadTasks();
             setShowForm(false);
         } catch (err) {
             console.error('Failed to create task', err);
+            setToastVariant('error');
+            setToastMessage('Failed to create task. Please try again.');
         }
     }
 
@@ -96,6 +105,8 @@ function Dashboard() {
             setTasks(data.tasks);
         } catch (err) {
             console.error('Failed to load tasks', err);
+            setToastVariant('error');
+            setToastMessage('Failed to load tasks. Please try again.');
         } finally {
             setIsLoading(false);
         }
@@ -109,11 +120,15 @@ function Dashboard() {
 
         try {
             await updateTask(taskId, taskData, token);
+            setToastVariant('success');
+            setToastMessage('Task updated successfully!');
             await handleLoadTasks();
             setShowForm(false);
             setEditingTaskId(null);
         } catch (err) {
             console.error('Failed to edit task', err);
+            setToastVariant('error');
+            setToastMessage('Failed to edit task. Please try again.');
         }
     }
 
@@ -125,9 +140,13 @@ function Dashboard() {
 
         try {
             await deleteTask(taskId, token);
+            setToastVariant('success');
+            setToastMessage('Task deleted successfully!');
             await handleLoadTasks();
         } catch (err) {
             console.error('Failed to delete task', err);
+            setToastVariant('error');
+            setToastMessage('Failed to delete task. Please try again.');
         }
     }
 
@@ -175,6 +194,12 @@ function Dashboard() {
 
     return (
         <>
+            <Toast
+                open={Boolean(toastMessage)}
+                message={toastMessage ?? ''}
+                variant={toastVariant ?? 'info'}
+                onClose={() => setToastMessage(null)}
+            />
             <header className="dashboard-header">
                 <h1>Dashboard</h1>
                 <p className="secondary-text">You have {tasks.length} tasks to do.</p>
