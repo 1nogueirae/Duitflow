@@ -7,6 +7,7 @@ const { User } = require('../../database/models')
 const registerMiddleware = require('../../middlewares/register.middleware')
 const loginMiddleware = require('../../middlewares/login.middleware')
 const authMiddleware = require('../../middlewares/auth.middleware')
+const authRateLimiter = require('../../middlewares/rateLimit.middleware')
 
 const express = require('express');
 const router = express.Router();
@@ -35,7 +36,7 @@ router.get('/', authMiddleware, async (req, res) => {
     res.status(200).json({ message: `Users searched successfully`, users: usersFiltered })
 })
 
-router.post('/register', registerMiddleware, async (req, res) => {
+router.post('/register', authRateLimiter, registerMiddleware, async (req, res) => {
     const user = req.body
 
     const existingUser = await User.findOne({ where: { email: user.email } })
@@ -67,7 +68,7 @@ router.post('/register', registerMiddleware, async (req, res) => {
 
 })
 
-router.post('/login', loginMiddleware, async (req, res) => {
+router.post('/login', authRateLimiter, loginMiddleware, async (req, res) => {
     const user = req.body
     const email = user.email
     const password = user.password
